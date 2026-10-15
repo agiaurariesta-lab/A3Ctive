@@ -24,22 +24,30 @@ modul IR kalau sudah siap pasang di lapangan. Pada simulasi, satu putaran
 ## Struktur folder
 
 ```
-a3ctive/
+.
 ├── app.py                # Backend Flask: logic, simulasi sensor, API
 ├── requirements.txt      # Dependency Python
-├── alert_log.csv         # Riwayat log (dibuat otomatis saat ada kejadian)
+├── README.md
 ├── templates/
 │   └── index.html        # Halaman dashboard (HTML)
 └── static/
     ├── style.css         # Styling dashboard
-    ├── extra.css         # Layout melebar & indikator server terputus
     └── script.js         # Fetch API & render dinamis (JavaScript)
 ```
 
-## Cara menjalankan di VS Code
+File `alert_log.csv` (riwayat log) dibuat otomatis di folder yang sama dengan
+`app.py` saat ada kejadian pertama.
 
-1. Buka folder `a3ctive` ini di VS Code (`File > Open Folder`).
-2. Buka terminal di VS Code (``Ctrl+` ``), lalu buat virtual environment (opsional tapi disarankan):
+## Cara menjalankan
+
+Prasyarat: Python 3 dan koneksi internet untuk instalasi awal.
+
+1. Unduh repositori ini (tombol **Code > Download ZIP** lalu ekstrak), atau clone:
+```
+   git clone <URL-repositori-ini>
+```
+2. Buka folder hasil unduhan/clone di VS Code (`File > Open Folder`), lalu buka terminal (``Ctrl+` ``).
+3. Buat dan aktifkan virtual environment (opsional tapi disarankan):
 ```
    python -m venv venv
    venv\Scripts\activate       # Windows
@@ -49,15 +57,17 @@ a3ctive/
 ```
    Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 ```
-3. Install dependency:
+4. Install dependency:
 ```
    py -m pip install -r requirements.txt
 ```
-4. Pastikan terminal berada di folder yang berisi `app.py` (gunakan `cd a3ctive` jika perlu), lalu jalankan server:
+   (Mac/Linux: `python3 -m pip install -r requirements.txt`)
+5. Pastikan terminal berada di folder yang berisi `app.py`, lalu jalankan server:
 ```
    py app.py
 ```
-5. Buka browser ke **http://127.0.0.1:5000**
+   (Mac/Linux: `python3 app.py`)
+6. Buka browser ke **http://127.0.0.1:5000**
 
 Dashboard akan otomatis update setiap 2 detik. Jika tampilan tidak berubah
 setelah file diedit, tekan `Ctrl+F5`. Untuk berhenti, tekan `Ctrl+C` di terminal.
@@ -89,3 +99,4 @@ Restart server setelah mengubah nilai.
 
 - Data ruangan disimpan di memori, jadi status kembali ke kondisi awal saat server dimulai ulang. Log kejadian tetap tersimpan di `alert_log.csv`.
 - Server dijalankan dengan `use_reloader=False` supaya simulasi tidak berjalan dua kali dan log CSV tidak tercatat ganda.
+- Aplikasi ini berjalan secara lokal (`127.0.0.1`) 
