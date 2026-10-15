@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A3Ctive | Smart AC Energy Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='extra.css') }}" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">❄️</span>
+      <div>
+        <h1>A3Ctive</h1>
+        <p class="subtitle">Smart AC Energy Management for Public Facilities</p>
+      </div>
+    </div>
+    <div class="clock" id="clock">--:--:--</div>
+  </header>
+
+  <main>
+
+    <section class="panel">
+      <h2>Ringkasan per Gedung</h2>
+      <div id="building-cards" class="building-grid"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Peta Status Ruangan</h2>
+      <div class="legend">
+        <span class="legend-item"><span class="dot dot-normal"></span> Normal</span>
+        <span class="legend-item"><span class="dot dot-warning"></span> Perlu Diperhatikan</span>
+        <span class="legend-item"><span class="dot dot-anomaly"></span> Anomali (Boros)</span>
+      </div>
+      <div id="room-grid" class="room-grid"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Log Notifikasi</h2>
+      <ul id="alert-list" class="alert-list"></ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>A3Ctive — Prototipe untuk demo kompetisi. Data sensor pada mode ini disimulasikan.</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

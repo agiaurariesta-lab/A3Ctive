@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap');
+
+* { box-sizing: border-box; }
+h1, h2, h3, p, ul { margin: 0; }
+
+body {
+  margin: 0;
+  background: #FCF8EE;
+  color: #26231F;
+  font-family: 'DM Sans', system-ui, courier new;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- header ---- */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px clamp(16px, 3vw, 48px);
+  background: #FFFFFF;
+  border-bottom: 1px solid #EFE8DA;
+}
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-icon { font-size: 32px; line-height: 1; }
+.brand h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+.subtitle { font-size: 14px; color: #857F72; }
+.clock { font-size: 20px; font-weight: 600; color: #7DB7F5; }
+.clock.offline { color: #EF6B6B; }
+.clock.offline::after { content: " · server terputus"; }
+
+/* ---- layout melebar ---- */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  padding: 24px clamp(16px, 3vw, 48px);
+}
+.panel {
+  background: #FFFEFC;
+  border: 1px solid #EFE8DA;
+  border-radius: 16px;
+  padding: 20px 24px;
+}
+.panel h2 { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+
+/* ---- ringkasan per gedung ---- */
+.building-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.building-card {
+  background: #FAF5EA;
+  border: 1px solid #EFE6D3;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.building-card h3 { font-size: 15px; font-weight: 600; }
+.score-value { font-size: 44px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+.score-good { color: #4CBF84; }
+.score-mid { color: #F0B84A; }
+.score-bad { color: #EF6B6B; }
+.building-meta { font-size: 13px; line-height: 1.6; color: #857F72; }
+
+/* ---- legenda ---- */
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 16px; font-size: 14px; color: #857F72; }
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.dot-normal { background: #6FCF97; }
+.dot-warning { background: #F5C453; }
+.dot-anomaly { background: #F28B8B; }
+
+/* ---- peta status ruangan (kotak-kotak) ---- */
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+.room-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #FFFCF6;
+  border: 1px solid #EFE8DA;
+  border-left: 6px solid #6FCF97;
+  border-radius: 14px;
+  padding: 18px;
+}
+.room-card.status-warning { border-left-color: #F5C453; background: #FFFBEF; }
+.room-card.status-anomaly { border-left-color: #F28B8B; background: #FFF6F4; }
+
+.room-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.room-name { font-size: 18px; font-weight: 700; line-height: 1.2; }
+.room-building { font-size: 13px; color: #857F72; margin-top: 2px; }
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.status-badge.status-normal { background: #DDF3E6; color: #2F9A63; }
+.status-badge.status-warning { background: #FDF0CF; color: #A8770A; }
+.status-badge.status-anomaly { background: #FCE0DE; color: #D04F4F; }
+
+.room-stats { font-size: 14px; line-height: 1.7; color: #857F72; }
+.room-stats b { color: #26231F; }
+
+.room-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.room-actions button {
+  flex: 1;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 0;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-shutoff { background: #F78F8F; color: #FFFFFF; }
+.btn-shutoff:hover:not(:disabled) { background: #F27777; }
+.btn-shutoff:disabled { background: #FAD3D3; cursor: not-allowed; }
+.btn-turnon { background: #E9EDF6; color: #26231F; }
+.btn-turnon:hover:not(:disabled) { background: #DCE4F3; }
+.btn-turnon:disabled { background: #F1F1F3; color: #B5B8BE; cursor: not-allowed; }
+
+/* ---- log notifikasi ---- */
+.alert-list { list-style: none; padding: 0; }
+.alert-list li {
+  display: flex;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid #EFE8DA;
+  font-size: 14px;
+}
+.alert-list li:first-child { border-top: 0; }
+.alert-time { font-weight: 600; color: #7DB7F5; min-width: 72px; }
+.alert-empty { color: #857F72; }
+
+footer { padding: 8px 16px 32px; text-align: center; font-size: 13px; color: #857F72; }
